@@ -97,7 +97,7 @@ def handle_on_message(client, user_data, msg):
 def register():
     mqtt_broker = "192.168.0.170"
 
-    client = mqtt.Client("Web Client 3")
+    client = mqtt.Client("IoT Demo Client")
     client.connect(mqtt_broker)
     client.loop_start()
 

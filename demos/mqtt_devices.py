@@ -16,12 +16,26 @@ def handle_on_message(client, user_data, msg):
     print(f'{msg.topic}: {payload}')
 
 
-client = mqtt.Client("MQTT demo Client")
+client = mqtt.Client("MQTT Demo Client")
 client.connect(mqtt_broker)
 client.loop_start()
 
 client.subscribe("#")
 
 client.on_message = handle_on_message
+
+payload = json.dumps({
+    "mode": "color",
+    "red": 255,
+    "green": 0,
+    "blue": 0,
+    "gain": 100,
+    "white": 255,
+    "effect": 0,
+    "turn": "on",
+    "transition": 500
+})
+
+client.publish('shellies/shellyrgbw2-DE0150/color/0/set', payload)
 
 time.sleep(1000)
